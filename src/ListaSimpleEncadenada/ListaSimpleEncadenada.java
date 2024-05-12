@@ -79,9 +79,69 @@ public class ListaSimpleEncadenada {
     
     
     
+    
     public int cantidadNodos(){
         return this.cantNodo;
     }
+    
+   
+     /**
+     * 
+     * Este metodo eliminar el primer nodo de la lista
+     * @return 
+     */
+    public void eliminarPim(){
+       if(verificarVacio()){ //Verifica si la lista esta vacio
+           return; //como la lista esta vacio no hace nada
+       } 
+       this.prim = this.prim.prox;
+       this.cantNodo--;
+    }
+    
+     /**
+     * Este metodo elimina el ulutmo nodo de la lista
+     * 
+     */
+    public void eliminarUlt(){
+       if(verificarVacio()){ //Verifica si la lista esta vacio
+           return; //como la lista esta vacio no hace nada
+       } 
+       Nodo aux = this.prim;
+       while(aux.prox.prox != null){
+           aux = aux.prox;
+       }
+       aux.prox = null;
+       this.ult = aux;
+       this.cantNodo--;
+    }
+    
+    /**
+     * ELimina un nodo en una respectiva posicion
+     */
+    public void eliminarPos(int pos){
+        if(pos == 1){ //eliminar el primero
+            eliminarPim();
+        }else{
+            if(pos == cantidadNodos()){ //eliminar el ultimo
+                eliminarUlt();
+            }else{
+                int contador = 1;
+                Nodo aux = this.prim;
+                Nodo ant  = null;
+                while(contador != pos){
+                    ant = aux;
+                    aux = aux.prox;
+                    contador++;
+                }
+                ant.prox = aux.prox;
+                aux.prox =null;
+                this.cantNodo--;
+
+            }
+        }
+        
+    }
+    
 
     
     public String toString(){
@@ -105,10 +165,18 @@ public class ListaSimpleEncadenada {
          Lista1.insertarUlt(1000);
            
         System.out.println(Lista1.toString());
-        System.out.println("Cantidad de Nodos: " + Lista1.cantidadNodos());
-        System.out.println("Verificar Si esta vacio mi Lista: " + Lista1.verificarVacio());
-        Lista1.reemplazar(8, 1);
+//        System.out.println("Cantidad de Nodos: " + Lista1.cantidadNodos());
+//        System.out.println("Verificar Si esta vacio mi Lista: " + Lista1.verificarVacio());
+//        Lista1.reemplazar(8, 1);
+//        System.out.println(Lista1.toString());
+//        System.out.println("Frecuencia de 1: " + Lista1.frecuencia(1));
+//        Lista1.eliminarPim();
+//        System.out.println(Lista1.toString());
+//        Lista1.eliminarUlt();
+//        System.out.println(Lista1.toString());
+        
+        Lista1.eliminarPos(7);
         System.out.println(Lista1.toString());
-        System.out.println("Frecuencia de 1: " + Lista1.frecuencia(1));
+        
     }
 }

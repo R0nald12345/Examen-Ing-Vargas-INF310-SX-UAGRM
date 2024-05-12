@@ -96,8 +96,6 @@ public class VectorLista {
         System.out.println(L1.toString());
         
     }
-    
-          
 }
 
 
